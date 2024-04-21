@@ -26,6 +26,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     path: "config/.env",
   });
 }
+app.use(express.static(path.join(__dirname,"../frontend/build")));
+
+app.get("*",(req,res) =>{
+    res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"));
+})
+
 
 // import routes
 const user = require("./controller/user");
